@@ -1,22 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-</head>
-<body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      name: '',
-      repo: ''
-    }
-  </script>
-  <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-</body>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>test</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <!-- Theme: Simple -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css"
+    />
+    <!-- スタイル修正 -->
+    <!-- <link rel="stylesheet" type="text/css" href="./styles/global.css" /> -->
+    <style>
+      :root {
+        --base-font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- mermaid記法 -->
+    <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+      var num = 0;
+      mermaid.initialize({ startOnLoad: false });
+
+      window.$docsify = {
+        name: 'docsify-test',
+        nameLink: '/',
+        repo: 'https://github.com/kzk4043/docsify-test',
+        loadSidebar: true,
+        auto2top: true,
+        logo: '/assets/icon.svg',
+        themeColor: '#E71286',
+        formatUpdated: '{MM}/{DD} {HH}:{mm}',
+        subMaxLevel: 3,
+        markdown: {
+          renderer: {
+            code: function (code, lang) {
+              if (lang === 'mermaid') {
+                return (
+                  '<div class="mermaid">' +
+                  mermaid.render('mermaid-svg-' + num++, code) +
+                  '</div>'
+                );
+              }
+              return this.origin.code.apply(this, arguments);
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Docsify v4 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+    <!-- 検索ボックス -->
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+    <!-- 画像拡大 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+    <!-- コードコピー -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+    <!-- 言語のhighLight -->
+    <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-diff.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-pug.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-scss.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-typescript.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-yaml.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-jsx.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-tsx.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-json.min.js"></script>
+  </body>
 </html>
